@@ -52,8 +52,8 @@ class GreenHarmony(FilterWithoutDialog):
 			'zh': '🌱绿色和谐',
 			})
 	
-	self.keyboardShortcut = 'x'
-	self.keyboardShortcutModifier = NSControlKeyMask
+		self.keyboardShortcut = 'x'
+		self.keyboardShortcutModifier = NSControlKeyMask
 	
 	@objc.python_method
 	def filter(self, layer, inEditView, customParameters):
