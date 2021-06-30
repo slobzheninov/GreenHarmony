@@ -57,37 +57,37 @@ class GreenHarmony(FilterWithoutDialog):
 		# https://gist.github.com/simoncozens/3c5d304ae2c14894393c6284df91be5b
 
 		selectionCounts = bool(inEditView) and bool(layer.selection)
-		
-		for shape in layer.shapes:
-			if type(shape) == GSPath:
-				for node in shape.nodes:
-					if not selectionCounts or node in layer.selection:
-						if node.type == CURVE and node.smooth:
-							if node.nextNode and node.prevNode and node.nextNode.type == OFFCURVE and node.prevNode.type == OFFCURVE:
-								# adjacent handles:
-								N = node.nextNode
-								NN = node.nextNode.nextNode
-								P = node.prevNode
-								PP = node.prevNode.prevNode
+		if layer.shapes:
+			for shape in layer.shapes:
+				if type(shape) == GSPath:
+					for node in shape.nodes:
+						if not selectionCounts or node in layer.selection:
+							if node.type == CURVE and node.smooth:
+								if node.nextNode and node.prevNode and node.nextNode.type == OFFCURVE and node.prevNode.type == OFFCURVE:
+									# adjacent handles:
+									N = node.nextNode
+									NN = node.nextNode.nextNode
+									P = node.prevNode
+									PP = node.prevNode.prevNode
 								
-								# find intersection of lines created by offcurves
-								xIntersect, yIntersect = (
-									getIntersection( 
-										N.x, N.y, NN.x, NN.y,
-										P.x, P.y, PP.x, PP.y,
-										) 
-									)
-								intersection = NSPoint( xIntersect, yIntersect )
+									# find intersection of lines created by offcurves
+									xIntersect, yIntersect = (
+										getIntersection( 
+											N.x, N.y, NN.x, NN.y,
+											P.x, P.y, PP.x, PP.y,
+											) 
+										)
+									intersection = NSPoint( xIntersect, yIntersect )
 								
-								# find ratios
-								r0 = getDist( NN, N ) / getDist( N, intersection )
-								r1 = getDist( intersection, P ) / getDist( P, PP )
-								ratio = sqrt(r0 * r1)
+									# find ratios
+									r0 = getDist( NN, N ) / getDist( N, intersection )
+									r1 = getDist( intersection, P ) / getDist( P, PP )
+									ratio = sqrt(r0 * r1)
 								
-								# set oncurve point position based on that ratio:
-								t = ratio / (ratio+1)
-								node.x = remap( t, 0, 1, N.x, P.x ) 
-								node.y = remap( t, 0, 1, N.y, P.y )
+									# set oncurve point position based on that ratio:
+									t = ratio / (ratio+1)
+									node.x = remap( t, 0, 1, N.x, P.x ) 
+									node.y = remap( t, 0, 1, N.y, P.y )
 
 	@objc.python_method
 	def __file__(self):
