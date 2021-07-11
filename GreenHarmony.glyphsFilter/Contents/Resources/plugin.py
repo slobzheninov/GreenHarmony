@@ -46,9 +46,10 @@ class GreenHarmony(FilterWithoutDialog):
 			'es': 'Harmonía verde',
 			'cs': 'Zelená harmonie',
 			'pt': 'Harmonia verde',
+			'ru': 'Зелёная гармония',
 			'jp': '緑の調和',
 			'ko': '녹색 조화',
-			'zh': '绿色和谐',
+			'zh': '🌱绿色和谐',
 			})
 
 	@objc.python_method
