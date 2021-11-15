@@ -1,6 +1,6 @@
 # Green Harmony
 
-Green Harmony (*de:* Grüne Harmonie, *fr:* Harmonie verte, *es:* Harmonía verde, *cs:* Zelená harmonie, *pt:* Harmonia verde, *jp:* 緑の調和, *ko:* 녹색 조화, *zh:* 绿色和谐) is a Glyphs.app filter that G2-harmonizes selected “smooth” nodes.
+Green Harmony (*de:* Grüne Harmonie, *fr:* Harmonie verte, *es:* Armonía verde, *cs:* Zelená harmonie, *pt:* Harmonia verde, *jp:* 緑の調和, *ko:* 녹색 조화, *zh:* 绿色和谐) is a Glyphs.app filter that G2-harmonizes selected “smooth” nodes.
  
 ## Usage
 
