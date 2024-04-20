@@ -44,6 +44,7 @@ class GreenHarmony(FilterWithoutDialog):
 			'de': 'Grüne Harmonie',
 			'fr': 'Harmonie verte',
 			'es': 'Armonía verde',
+			'it': 'Armonia verde',
 			'cs': 'Zelená harmonie',
 			'pt': 'Harmonia verde',
 			'ru': 'Зелёная гармония',

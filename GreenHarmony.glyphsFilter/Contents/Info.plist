@@ -13,7 +13,7 @@
 	<key>CFBundleName</key>
 	<string>GreenHarmony</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.3</string> <!-- 1.0 -->
+	<string>1.0.4</string> <!-- 1.0 -->
 	<key>CFBundleVersion</key>
 	<string>4</string> <!-- 123 -->
 	<key>UpdateFeedURL</key>
@@ -21,7 +21,7 @@
 	<key>productPageURL</key>
 	<string>https://github.com/slobzheninov/GreenHarmony</string>
 	<key>productReleaseNotes</key>
-	<string>Updated Binary.</string>
+	<string>Italian Localization, thanks to Matteo for removing an accent.</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright, Alex Slobzheninov, 2021</string>
 	<key>NSPrincipalClass</key>
