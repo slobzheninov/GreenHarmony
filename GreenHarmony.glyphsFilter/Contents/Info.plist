@@ -13,15 +13,15 @@
 	<key>CFBundleName</key>
 	<string>GreenHarmony</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.4</string> <!-- 1.0 -->
+	<string>1.1</string> <!-- 1.0 -->
 	<key>CFBundleVersion</key>
-	<string>4</string> <!-- 123 -->
+	<string>5</string> <!-- 123 -->
 	<key>UpdateFeedURL</key>
 	<string>https://raw.githubusercontent.com/slobzheninov/GreenHarmony/master/GreenHarmony.glyphsFilter/Contents/Info.plist</string>
 	<key>productPageURL</key>
 	<string>https://github.com/slobzheninov/GreenHarmony</string>
 	<key>productReleaseNotes</key>
-	<string>Italian Localization, thanks to Matteo for removing an accent.</string>
+	<string>Allow harmonizing on all layers by holding down the Option key.</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright, Alex Slobzheninov, 2021</string>
 	<key>NSPrincipalClass</key>

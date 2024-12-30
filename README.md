@@ -4,11 +4,13 @@ Green Harmony (*de:* Grüne Harmonie, *fr:* Harmonie verte, *es:* Armonía verde
  
 ## Usage
 
-To harmonize the transition between two curve segments, select the green on-curve node between the two segments, and run *Filter > Green Harmony* (Ctrl-X). The selected on-curve node will be moved to the G2 position (‘harmonized’) between the two adjacent handles:
+To harmonize the transition between two curve segments, select the green on-curve node between the two segments, and run *Filter > Green Harmony*. The selected on-curve node will be moved to the G2 position (‘harmonized’) between the two adjacent handles:
 
 ![Green Harmony: before and after](GreenHarmonyScreenshot.png)
 
 <small>(Curvature visualisation: [Speed Punk](glyphsapp3://showplugin/Speed%20Punk) by @yanone.)</small>
+
+Hold down the Opt key to harmonize the same point(s) in all compatible layers of the same glyph(s).
  
 You can run the filter on multiple on-curve points. If none are selected, all green on-curve points will be harmonized.
  
