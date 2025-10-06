@@ -1,31 +1,32 @@
 # encoding: utf-8
 from __future__ import division, print_function, unicode_literals
 import objc
-from GlyphsApp import *
-from GlyphsApp.plugins import *
-from AppKit import NSEvent
+from GlyphsApp import Glyphs, GSPath, CURVE, OFFCURVE
+from GlyphsApp.plugins import FilterWithoutDialog
 from math import sqrt
+from Foundation import NSPoint
+from AppKit import NSEvent NSEventModifierFlagOption
 
 
-def getIntersection(x1,y1, x2,y2, x3,y3, x4,y4):
-	px = ( (x1*y2-y1*x2)*(x3-x4)-(x1-x2)*(x3*y4-y3*x4) ) / ( (x1-x2)*(y3-y4)-(y1-y2)*(x3-x4) ) 
-	py = ( (x1*y2-y1*x2)*(y3-y4)-(y1-y2)*(x3*y4-y3*x4) ) / ( (x1-x2)*(y3-y4)-(y1-y2)*(x3-x4) )
+def getIntersection(x1, y1, x2, y2, x3, y3, x4, y4):
+	px = ((x1 * y2 - y1 * x2) * (x3 - x4) - (x1 - x2) * (x3 * y4 - y3 * x4)) / ((x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4))
+	py = ((x1 * y2 - y1 * x2) * (y3 - y4) - (y1 - y2) * (x3 * y4 - y3 * x4)) / ((x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4))
 	return px, py
 
 
 def getDist(a, b):
-	dist = sqrt( (b.x - a.x)**2 + (b.y - a.y)**2 )
+	dist = sqrt((b.x - a.x)**2 + (b.y - a.y)**2)
 	return dist
 
 
 def remap(oldValue, oldMin, oldMax, newMin, newMax):
 	try:
-		oldRange = (oldMax - oldMin)  
-		newRange = (newMax - newMin)  
+		oldRange = (oldMax - oldMin)
+		newRange = (newMax - newMin)
 		newValue = (((oldValue - oldMin) * newRange) / oldRange) + newMin
 		return newValue
 	except:
-		pass
+		return None
 
 
 def harmonize(layer, shapeIndex, nodeIndex):
@@ -34,14 +35,14 @@ def harmonize(layer, shapeIndex, nodeIndex):
 	P = node.prevNode
 	NN = node.nextNode.nextNode
 	PP = node.prevNode.prevNode
-	
+
 	# find intersection of lines created by offcurves
 	xIntersect, yIntersect = (
-		getIntersection( 
+		getIntersection(
 			N.x, N.y, NN.x, NN.y,
 			P.x, P.y, PP.x, PP.y,
-			) 
 		)
+	)
 	intersection = NSPoint(xIntersect, yIntersect)
 
 	# find ratios
@@ -56,7 +57,7 @@ def harmonize(layer, shapeIndex, nodeIndex):
 
 
 class GreenHarmony(FilterWithoutDialog):
-	
+
 	@objc.python_method
 	def settings(self):
 		self.menuName = Glyphs.localize({
@@ -71,25 +72,23 @@ class GreenHarmony(FilterWithoutDialog):
 			'jp': '緑の調和',
 			'ko': '녹색 조화',
 			'zh': '🌱绿色和谐',
-			})
-	
+		})
+
 		# self.keyboardShortcut = 'x'
 		# self.keyboardShortcutModifier = NSControlKeyMask
-
 
 	@objc.python_method
 	def filter(self, layer, inEditView, customParameters):
 		# Based on algorithm suggestion by Simon Cozens:
 		# https://gist.github.com/simoncozens/3c5d304ae2c14894393c6284df91be5b
-		
+
 		keysPressed = NSEvent.modifierFlags()
-		optionKey = 524288
-		optionKeyPressedInEditView = inEditView and (keysPressed & optionKey == optionKey)
+		optionKeyPressedInEditView = inEditView and (keysPressed & NSEventModifierFlagOption == NSEventModifierFlagOption)
 
 		selectionCounts = bool(inEditView) and bool(layer.selection)
 		if layer.shapes:
 			for i, shape in enumerate(layer.shapes):
-				if type(shape) == GSPath:
+				if isinstance(shape, GSPath):
 					for j, node in enumerate(shape.nodes):
 						if not selectionCounts or node in layer.selection:
 							if node.type == CURVE and node.smooth:
@@ -97,12 +96,11 @@ class GreenHarmony(FilterWithoutDialog):
 								P = node.prevNode
 								if N and P and N.type == OFFCURVE and P.type == OFFCURVE:
 									harmonize(layer, i, j)
-									
+
 									if optionKeyPressedInEditView:
 										for otherLayer in layer.parent.layers:
 											if otherLayer is not layer and otherLayer.compareString() == layer.compareString():
 												harmonize(otherLayer, i, j)
-
 
 
 	@objc.python_method
