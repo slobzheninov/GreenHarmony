@@ -5,7 +5,7 @@ from GlyphsApp import Glyphs, GSPath, CURVE, OFFCURVE
 from GlyphsApp.plugins import FilterWithoutDialog
 from math import sqrt
 from Foundation import NSPoint
-from AppKit import NSEvent NSEventModifierFlagOption
+from AppKit import NSEvent, NSEventModifierFlagOption
 
 
 def getIntersection(x1, y1, x2, y2, x3, y3, x4, y4):
