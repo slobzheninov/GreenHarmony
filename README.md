@@ -28,10 +28,19 @@ Use of this filter may alter your shape(s) quite a lot, so make sure you make a 
 
 Green Harmony is [available in the Glyphs&nbsp;3 Plugin Manager](glyphsapp3://showplugin/Green%20Harmony). Click on the *Install* button next to it and restart Glyphs.
  
+## Green Harmony 2
+
+Green Harmony 2 is a rewrite of Green Harmony in ObjC. It does not require any preinstallation of any modules (such as Python) and runs faster. 
+
+### Drawbacks
+
+Green Harmony 2 currently does not support Opt key for all masters, and is not localized yet.
 
 # License
 
 Copyright 2021 Alex Slobzheninov (@slobzheninov). Based on [algorithm described by Simon Cozens](https://gist.github.com/simoncozens/3c5d304ae2c14894393c6284df91be5b) (@simoncozens), and template code by Georg Seifert (@schriftgestalt) and Jan Gerner (@yanone). Help for the conversion into the plug-in by Rainer Erich Scheichelbauer (@mekkablue).
+
+Green Harmony 2 copyright 2025 Rainer Erich Scheichelbauer (@mekkablue). Based on Green Harmony.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
